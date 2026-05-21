@@ -1,3 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+/* 🎨 Registramos los colores y tipografías del portfolio */
+@theme {
+  --color-background: #131313;
+  --color-primary: #b8c4ff;
+  --color-on-primary: #002486;
+  --color-primary-container: #002fa7;
+  --color-on-primary-container: #90a4ff;
+  --color-surface: #131313;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #c4c5d6;
+  --color-tertiary: #73d9b5;
+  --color-on-tertiary: #003829;
+  --color-secondary: #e6c443;
+
+  /* Registramos las fuentes que importamos en el index.html */
+  --font-bricolage: "Bricolage Grotesque", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+}
+
+/* 🖌️ Clases de CSS puro con los efectos especiales de la IA */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-leak {
+  background: radial-gradient(circle at center, rgba(184, 196, 255, 0.15) 0%, transparent 70%);
+}
+
+.folder-depth {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.kinetic-text {
+  text-shadow: 0 0 40px rgba(184, 196, 255, 0.4);
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradientAnimation 3s linear infinite;
+}
