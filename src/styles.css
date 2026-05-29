@@ -92,6 +92,23 @@
   transform: translateY(0);
 }
 
+/* Shimmer skeleton para cards mientras cargan las thumbs */
+@keyframes shimmer-slide {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.02) 0%,
+    rgba(255,255,255,0.055) 50%,
+    rgba(255,255,255,0.02) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-slide 1.6s ease-in-out infinite;
+}
+
 /* Film grain overlay */
 body::after {
   content: '';

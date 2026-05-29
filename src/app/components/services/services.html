@@ -17,7 +17,7 @@
 
     <div class="grid md:grid-cols-3 gap-6">
       @for (item of lang.t().services.items; track item.title; let i = $index) {
-        <div class="service-card glass-card rounded-3xl p-8 flex flex-col gap-6 border border-white/[0.06] hover:border-primary/25 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_28px_56px_rgba(0,0,0,0.65)]"
+        <div class="service-card glass-card rounded-3xl p-5 md:p-8 flex flex-col gap-5 md:gap-6 border border-white/[0.06] hover:border-primary/25 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_28px_56px_rgba(0,0,0,0.65)]"
              [style.transition-delay]="i * 60 + 'ms'">
 
           <div class="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">

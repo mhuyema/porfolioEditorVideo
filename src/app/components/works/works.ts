@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ViewChildren, QueryList, ElementRef, NgZone, inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ViewChildren, QueryList, ElementRef, NgZone, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Video } from '../../models/video';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -12,7 +12,7 @@ import { LanguageService } from '../../services/language.service';
   templateUrl: './works.html',
   styleUrls: ['./works.css']
 })
-export class Works implements AfterViewInit, OnDestroy {
+export class Works implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('card') cardRefs!: QueryList<ElementRef<HTMLElement>>;
 
   lang = inject(LanguageService);
@@ -100,6 +100,24 @@ export class Works implements AfterViewInit, OnDestroy {
     }
   ];
 
+  ngOnInit() {
+    this.misVideos.forEach(v => {
+      const img = new Image();
+      img.src = this.obtenerThumbnailYT(v.linkVideo);
+    });
+    this.warmUpYouTube();
+  }
+
+  private warmUpYouTube() {
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/?enablejsapi=1';
+    iframe.style.cssText = 'position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;top:-9999px';
+    iframe.setAttribute('tabindex', '-1');
+    iframe.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(iframe);
+    iframe.addEventListener('load', () => setTimeout(() => iframe.remove(), 4000));
+  }
+
   ngAfterViewInit() {
     if (window.innerWidth >= 768) {
       this.ngZone.runOutsideAngular(() => this.startCylinderEffect());
@@ -175,5 +193,13 @@ export class Works implements AfterViewInit, OnDestroy {
 
   abrirVideo(url: string) {
     if (url) window.open(url, '_blank');
+  }
+
+  imgLoaded(e: Event) {
+    (e.target as HTMLImageElement).style.opacity = '1';
+  }
+
+  iframeLoaded(e: Event) {
+    (e.target as HTMLIFrameElement).style.opacity = '1';
   }
 }

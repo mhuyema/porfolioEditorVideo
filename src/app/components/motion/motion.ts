@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Video } from '../../models/video';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -12,12 +12,19 @@ import { LanguageService } from '../../services/language.service';
   templateUrl: './motion.html',
   styleUrls: ['./motion.css']
 })
-export class Motion {
+export class Motion implements OnInit {
   lang = inject(LanguageService);
   videoActivoIndex: number | null = null;
   selectedItem: Video | null = null;
 
   constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit() {
+    this.misMotions.forEach(v => {
+      const img = new Image();
+      img.src = this.obtenerThumbnailYT(v.linkVideo);
+    });
+  }
 
   misMotions: Array<Video> = [
     {
@@ -91,5 +98,13 @@ export class Motion {
 
   abrirVideo(url: string) {
     if (url) window.open(url, '_blank');
+  }
+
+  imgLoaded(e: Event) {
+    (e.target as HTMLImageElement).style.opacity = '1';
+  }
+
+  iframeLoaded(e: Event) {
+    (e.target as HTMLIFrameElement).style.opacity = '1';
   }
 }

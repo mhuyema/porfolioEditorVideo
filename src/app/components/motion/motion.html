@@ -20,23 +20,26 @@
 
         @for (item of misMotions; track item.titulo; let i = $index) {
 
-          <div class="group relative overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer shrink-0 snap-start transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.7)]"
-               [class]="esHorizontal(item) ? 'w-[380px] aspect-video' : 'w-[180px] aspect-[9/16]'"
+          <div class="skeleton-shimmer group relative overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer shrink-0 snap-start transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.7)]"
+               [class]="esHorizontal(item) ? 'w-[280px] sm:w-[380px] aspect-video' : 'w-[150px] sm:w-[180px] aspect-[9/16]'"
                (mouseenter)="videoActivoIndex = i"
                (mouseleave)="videoActivoIndex = null"
                (click)="seleccionarItem(item)">
 
+            <!-- Thumbnail siempre visible como fondo -->
+            <img [src]="obtenerThumbnailYT(item.linkVideo)"
+                 [alt]="item.titulo"
+                 style="opacity:0;transition:opacity 0.45s ease"
+                 (load)="imgLoaded($event)"
+                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
+            <!-- Iframe encima, fade-in cuando carga -->
             @if (videoActivoIndex === i) {
               <iframe [src]="obtenerEmbedYT(item.linkVideo)"
                       frameborder="0"
                       allow="autoplay; encrypted-media"
-                      class="absolute inset-0 w-full h-full pointer-events-none">
+                      style="opacity:0;transition:opacity 0.5s ease;position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"
+                      (load)="iframeLoaded($event)">
               </iframe>
-            } @else {
-              <img [src]="obtenerThumbnailYT(item.linkVideo)"
-                   [alt]="item.titulo"
-                   loading="lazy"
-                   class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
             }
 
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
@@ -69,7 +72,7 @@
       <div class="absolute inset-0 bg-black/85 backdrop-blur-lg"></div>
 
       <div class="relative z-10 w-full rounded-3xl overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)] animate-modal-in"
-           [class]="esHorizontal(selectedItem) ? 'max-w-3xl aspect-video' : 'max-w-[340px] aspect-[9/16]'"
+           [class]="esHorizontal(selectedItem) ? 'w-full max-w-3xl aspect-video' : 'w-[calc(100vw-32px)] max-w-[340px] aspect-[9/16]'"
            (click)="$event.stopPropagation()">
 
         <iframe [src]="obtenerEmbedModalYT(selectedItem.linkVideo)"

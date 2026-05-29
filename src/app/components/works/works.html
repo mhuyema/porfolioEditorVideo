@@ -17,19 +17,23 @@
       <!-- Set A -->
       @for (video of misVideos; track video.titulo; let i = $index) {
         <div #card
-             class="group relative overflow-hidden rounded-3xl glass-card bg-neutral-900 flex items-end p-5 w-[220px] aspect-[9/16] shrink-0 shadow-lg cursor-pointer hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] transition-shadow duration-300"
+             class="skeleton-shimmer group relative overflow-hidden rounded-3xl glass-card bg-neutral-900 flex items-end p-5 w-[220px] aspect-[9/16] shrink-0 shadow-lg cursor-pointer hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] transition-shadow duration-300"
              (mouseenter)="videoActivoKey = 'a_' + i"
              (mouseleave)="videoActivoKey = null"
              (click)="seleccionarVideo(video)">
 
+          <!-- Thumbnail siempre visible como fondo -->
+          <img [src]="obtenerThumbnailYT(video.linkVideo)" [alt]="video.titulo"
+               style="opacity:0;transition:opacity 0.45s ease"
+               (load)="imgLoaded($event)"
+               class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
+          <!-- Iframe encima, fade-in cuando carga -->
           @if (videoActivoKey === 'a_' + i) {
             <iframe [src]="obtenerEmbedYT(video.linkVideo)"
                     frameborder="0" allow="autoplay; encrypted-media"
-                    class="absolute inset-0 w-full h-full pointer-events-none">
+                    style="opacity:0;transition:opacity 0.5s ease;position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"
+                    (load)="iframeLoaded($event)">
             </iframe>
-          } @else {
-            <img [src]="obtenerThumbnailYT(video.linkVideo)" [alt]="video.titulo" loading="lazy"
-                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
           }
 
           <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent z-10 pointer-events-none"></div>
@@ -52,19 +56,23 @@
       <!-- Set B -->
       @for (video of misVideos; track video.titulo; let i = $index) {
         <div #card
-             class="group relative overflow-hidden rounded-3xl glass-card bg-neutral-900 flex items-end p-5 w-[220px] aspect-[9/16] shrink-0 shadow-lg cursor-pointer hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] transition-shadow duration-300"
+             class="skeleton-shimmer group relative overflow-hidden rounded-3xl glass-card bg-neutral-900 flex items-end p-5 w-[220px] aspect-[9/16] shrink-0 shadow-lg cursor-pointer hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)] transition-shadow duration-300"
              (mouseenter)="videoActivoKey = 'b_' + i"
              (mouseleave)="videoActivoKey = null"
              (click)="seleccionarVideo(video)">
 
+          <!-- Thumbnail siempre visible como fondo -->
+          <img [src]="obtenerThumbnailYT(video.linkVideo)" [alt]="video.titulo"
+               style="opacity:0;transition:opacity 0.45s ease"
+               (load)="imgLoaded($event)"
+               class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
+          <!-- Iframe encima, fade-in cuando carga -->
           @if (videoActivoKey === 'b_' + i) {
             <iframe [src]="obtenerEmbedYT(video.linkVideo)"
                     frameborder="0" allow="autoplay; encrypted-media"
-                    class="absolute inset-0 w-full h-full pointer-events-none">
+                    style="opacity:0;transition:opacity 0.5s ease;position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"
+                    (load)="iframeLoaded($event)">
             </iframe>
-          } @else {
-            <img [src]="obtenerThumbnailYT(video.linkVideo)" [alt]="video.titulo" loading="lazy"
-                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
           }
 
           <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent z-10 pointer-events-none"></div>
@@ -96,7 +104,7 @@
       <div class="absolute inset-0 bg-black/85 backdrop-blur-lg"></div>
 
       <!-- Card expandida -->
-      <div class="relative z-10 w-full max-w-[340px] aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)] animate-modal-in"
+      <div class="relative z-10 w-[calc(100vw-32px)] max-w-[340px] aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)] animate-modal-in"
            (click)="$event.stopPropagation()">
 
         <iframe [src]="obtenerEmbedModalYT(selectedVideo.linkVideo)"

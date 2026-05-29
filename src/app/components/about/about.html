@@ -21,7 +21,7 @@
         </p>
 
         <!-- Tools -->
-        <div class="flex items-center gap-6">
+        <div class="flex flex-wrap items-center gap-5 md:gap-6">
           @for (tool of herramientas; track tool.nombre) {
             <div class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200">
               <img [src]="tool.icono" [alt]="tool.nombre" class="w-10 h-10 object-contain">
@@ -32,10 +32,10 @@
       </div>
 
       <!-- Stats -->
-      <div class="glass-card rounded-3xl p-10 flex flex-col gap-8">
+      <div class="glass-card rounded-3xl p-6 md:p-10 flex flex-col gap-6 md:gap-8">
         @for (stat of lang.t().about.stats; track stat.label; let i = $index) {
           <div class="flex items-baseline gap-4 border-b border-white/5 pb-8 last:border-0 last:pb-0">
-            <span class="font-bricolage text-5xl font-extrabold text-primary">{{ animatedValues()[i] }}</span>
+            <span class="font-bricolage text-4xl md:text-5xl font-extrabold text-primary">{{ animatedValues()[i] }}</span>
             <span class="font-manrope text-sm text-on-surface-variant uppercase tracking-widest">{{ stat.label }}</span>
           </div>
         }
