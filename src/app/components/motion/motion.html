@@ -2,16 +2,16 @@
   <div class="max-w-container-max mx-auto">
 
     <div class="flex items-center gap-4 mb-4">
-      <span class="text-xs font-semibold text-primary tracking-widest uppercase font-manrope">Motion</span>
+      <span class="text-xs font-semibold text-primary tracking-widest uppercase font-manrope">{{ lang.t().motion.label }}</span>
       <div class="h-px flex-1 bg-white/10"></div>
     </div>
 
     <div class="mb-10">
       <h2 class="font-bricolage text-4xl md:text-6xl font-extrabold mb-4 text-on-surface tracking-tight">
-        MOTION DESIGN
+        {{ lang.t().motion.title }}
       </h2>
       <p class="font-manrope text-lg text-on-surface-variant max-w-xl">
-        Brand animations, logo reveals, and motion graphics built to last.
+        {{ lang.t().motion.description }}
       </p>
     </div>
 
@@ -93,7 +93,7 @@
           </h4>
           <a [href]="selectedItem.linkVideo" target="_blank"
              class="inline-block px-6 py-2.5 rounded-xl bg-primary text-black text-xs font-manrope font-bold tracking-wider hover:opacity-90 transition-opacity">
-            Ver en YouTube ↗
+            {{ lang.t().motion.watchYT }} ↗
           </a>
         </div>
 

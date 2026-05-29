@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-hero',
@@ -9,6 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './hero.css',
 })
 export class Hero {
+  lang = inject(LanguageService);
+
   private thumbnails = [
     'https://img.youtube.com/vi/8VcKVLTbako/hqdefault.jpg',
     'https://img.youtube.com/vi/UKoglYLAf9Y/hqdefault.jpg',

@@ -5,10 +5,10 @@
        target="_blank"
        class="group inline-block">
       <h2 class="text-4xl md:text-7xl font-extrabold tracking-tight text-on-surface group-hover:text-primary transition-colors duration-300">
-        READY TO WORK <span class="text-primary italic group-hover:text-on-surface transition-colors duration-300">TOGETHER?</span>
+        {{ lang.t().footer.ctaMain }} <span class="text-primary italic group-hover:text-on-surface transition-colors duration-300">{{ lang.t().footer.ctaHighlight }}</span>
       </h2>
       <div class="mt-6 flex items-center justify-center gap-3 text-on-surface-variant group-hover:text-primary transition-colors duration-300">
-        <span class="font-manrope text-sm tracking-widest uppercase">Open WhatsApp</span>
+        <span class="font-manrope text-sm tracking-widest uppercase">{{ lang.t().footer.ctaSub }}</span>
         <span class="material-symbols-outlined text-lg">arrow_forward</span>
       </div>
     </a>
@@ -35,6 +35,6 @@
   </div>
   
   <p class="text-xs text-on-surface-variant/60">
-    © 2026 MH. All rights reserved.
+    {{ lang.t().footer.rights }}
   </p>
 </footer>

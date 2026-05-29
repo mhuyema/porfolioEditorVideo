@@ -1,19 +1,15 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
-  selector: 'app-showreel',
+  selector: 'app-services',
   standalone: true,
-  imports: [FadeInDirective],
-  templateUrl: './showreel.html',
-  styleUrl: './showreel.css',
+  imports: [CommonModule, FadeInDirective],
+  templateUrl: './services.html',
+  styleUrls: ['./services.css']
 })
-export class Showreel {
+export class Services {
   lang = inject(LanguageService);
-  mostrandoVideo = false;
-
-  reproducir() {
-    this.mostrandoVideo = true;
-  }
 }

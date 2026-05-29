@@ -1,64 +1,52 @@
 <section class="relative min-h-screen flex flex-col items-center justify-center pt-32 px-margin-mobile md:px-margin-desktop overflow-hidden">
 
-  <!-- Background collage de trabajos -->
   <div class="absolute inset-0 -z-10 overflow-hidden">
     <div class="absolute inset-0 -rotate-6 scale-125 flex flex-col gap-3 blur-[3px] opacity-60">
-
       <div class="flex gap-3 shrink-0">
         @for (t of row1; track $index) {
           <img [src]="t" alt="" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
         }
       </div>
-
       <div class="flex gap-3 shrink-0">
         @for (t of row2; track $index) {
           <img [src]="t" alt="" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
         }
       </div>
-
       <div class="flex gap-3 shrink-0">
         @for (t of row3; track $index) {
           <img [src]="t" alt="" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
         }
       </div>
-
     </div>
-
-    <!-- Overlay oscuro -->
     <div class="absolute inset-0 bg-background/75"></div>
-    <!-- Fade top y bottom para integrar con las secciones -->
     <div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
-    <!-- Vignette lateral -->
     <div class="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60"></div>
   </div>
 
-  <!-- Contenido -->
   <div class="text-center z-10 w-full max-w-4xl">
     <p class="font-manrope text-xs tracking-[0.3em] text-primary uppercase mb-6 opacity-80">
-      Video Editor & Motion Designer
+      {{ lang.t().hero.role }}
     </p>
     <h1 class="text-6xl md:text-9xl font-extrabold text-white tracking-tighter mb-6 kinetic-text">
       MATIAS H.
     </h1>
     <p class="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
-      Precision short-form editing for the next generation of visual storytellers.
-      Ultra-modern pacing meets high-fidelity production.
+      {{ lang.t().hero.description }}
     </p>
     <div class="flex items-center justify-center gap-6">
       <a href="#work"
          class="bg-primary text-black px-8 py-3 rounded-full text-sm font-semibold hover:scale-105 active:scale-95 transition-transform font-manrope">
-        Ver trabajos
+        {{ lang.t().hero.cta1 }}
       </a>
       <a href="https://wa.me/5491138915444?text=Hola!%20Vi%20tu%20portfolio%20y%20me%20interesa%20tu%20trabajo%20como%20editor"
          target="_blank"
          class="text-on-surface-variant hover:text-primary transition-colors text-sm font-manrope flex items-center gap-2">
-        Contactar
+        {{ lang.t().hero.cta2 }}
         <span class="material-symbols-outlined text-base">arrow_forward</span>
       </a>
     </div>
   </div>
 
-  <!-- Tool icons -->
   <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-8 z-10 opacity-40">
     <img src="assets/ae-icon.png"  alt="After Effects"  class="w-8 h-8 object-contain transition-transform duration-300 hover:scale-125 hover:opacity-100 cursor-default">
     <img src="assets/pr-icon.png"  alt="Premiere Pro"   class="w-8 h-8 object-contain transition-transform duration-300 hover:scale-125 hover:opacity-100 cursor-default">

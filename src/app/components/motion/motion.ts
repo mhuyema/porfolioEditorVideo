@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Video } from '../../models/video';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-motion',
@@ -12,6 +13,7 @@ import { FadeInDirective } from '../../directives/fade-in.directive';
   styleUrls: ['./motion.css']
 })
 export class Motion {
+  lang = inject(LanguageService);
   videoActivoIndex: number | null = null;
   selectedItem: Video | null = null;
 

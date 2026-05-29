@@ -1,10 +1,10 @@
 <section fadeIn class="py-24 bg-background overflow-hidden" id="work">
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-12">
     <h2 class="font-bricolage text-4xl md:text-6xl font-extrabold mb-4 text-on-surface tracking-tight">
-      SELECTED WORKS
+      {{ lang.t().works.title }}
     </h2>
     <p class="font-manrope text-lg text-on-surface-variant max-w-xl">
-      Curated vertical content engineered for retention and engagement.
+      {{ lang.t().works.description }}
     </p>
   </div>
 
@@ -34,7 +34,7 @@
 
           <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent z-10 pointer-events-none"></div>
           <div class="absolute top-4 right-4 z-20 px-2.5 py-1 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-manrope text-[10px] font-semibold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
-            <span>Ver</span><span class="text-[8px]">↗</span>
+            <span>{{ lang.t().works.watch }}</span><span class="text-[8px]">↗</span>
           </div>
           @if (video.vistas) {
             <div class="absolute top-4 left-4 z-20 px-2.5 py-1 rounded-xl bg-black/50 backdrop-blur-md border border-white/10 text-white font-manrope text-[10px] font-bold tracking-wider flex items-center gap-1.5">
@@ -69,7 +69,7 @@
 
           <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent z-10 pointer-events-none"></div>
           <div class="absolute top-4 right-4 z-20 px-2.5 py-1 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-manrope text-[10px] font-semibold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
-            <span>Ver</span><span class="text-[8px]">↗</span>
+            <span>{{ lang.t().works.watch }}</span><span class="text-[8px]">↗</span>
           </div>
           @if (video.vistas) {
             <div class="absolute top-4 left-4 z-20 px-2.5 py-1 rounded-xl bg-black/50 backdrop-blur-md border border-white/10 text-white font-manrope text-[10px] font-bold tracking-wider flex items-center gap-1.5">
@@ -130,12 +130,12 @@
           <div class="flex gap-3">
             <a [href]="selectedVideo.linkVideo" target="_blank"
                class="flex-1 py-2.5 rounded-xl bg-primary text-black text-xs font-manrope font-bold tracking-wider text-center hover:opacity-90 transition-opacity">
-              Ver en YouTube ↗
+              {{ lang.t().works.watchYT }} ↗
             </a>
             @if (selectedVideo.linkExterno) {
               <a [href]="selectedVideo.linkExterno" target="_blank"
                  class="flex-1 py-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-manrope font-semibold tracking-wider text-center hover:bg-white/20 transition-colors">
-                Ver en RRSS ↗
+                {{ lang.t().works.watchSocial }} ↗
               </a>
             }
           </div>

@@ -1,3 +1,5 @@
+<app-loader></app-loader>
+<app-cursor></app-cursor>
 <app-navbar></app-navbar>
 
 <main>
@@ -10,6 +12,8 @@
   <app-motion></app-motion>
 
   <app-about></app-about>
+
+  <app-services></app-services>
 </main>
 
 <app-footer></app-footer>
@@ -19,5 +23,5 @@
    target="_blank"
    class="fixed bottom-8 right-8 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full glass-card border border-white/10 font-manrope text-sm font-medium text-on-surface hover:border-primary/50 hover:text-primary transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
   <span class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.8)] animate-pulse shrink-0"></span>
-  <span class="hidden md:block">Available for projects</span>
+  <span class="hidden md:block">{{ lang.t().available }}</span>
 </a>

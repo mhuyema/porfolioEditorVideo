@@ -2,7 +2,7 @@
   <div class="max-w-container-max mx-auto">
 
     <div class="flex items-center gap-4 mb-12">
-      <span class="text-xs font-semibold text-primary tracking-widest uppercase font-manrope">About</span>
+      <span class="text-xs font-semibold text-primary tracking-widest uppercase font-manrope">{{ lang.t().about.label }}</span>
       <div class="h-px flex-1 bg-white/10"></div>
     </div>
 
@@ -11,19 +11,19 @@
       <!-- Bio -->
       <div>
         <h2 class="font-bricolage text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight mb-6">
-          Hi, I'm <span class="text-primary">Matias.</span>
+          {{ lang.t().about.greeting }} <span class="text-primary">Matias.</span>
         </h2>
         <p class="font-manrope text-lg text-on-surface-variant leading-relaxed mb-6">
-          Video editor & motion designer focused on short-form content that captures attention in the first second. I combine precise cutting rhythm with motion graphics to build stories that stick.
+          {{ lang.t().about.bio1 }}
         </p>
         <p class="font-manrope text-base text-on-surface-variant/70 leading-relaxed mb-10">
-          Based in Argentina — working with brands and creators worldwide.
+          {{ lang.t().about.bio2 }}
         </p>
 
         <!-- Tools -->
         <div class="flex items-center gap-6">
           @for (tool of herramientas; track tool.nombre) {
-            <div class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
+            <div class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200">
               <img [src]="tool.icono" [alt]="tool.nombre" class="w-10 h-10 object-contain">
               <span class="font-manrope text-[10px] text-on-surface-variant tracking-widest uppercase">{{ tool.nombre }}</span>
             </div>
@@ -33,9 +33,9 @@
 
       <!-- Stats -->
       <div class="glass-card rounded-3xl p-10 flex flex-col gap-8">
-        @for (stat of stats; track stat.label) {
+        @for (stat of lang.t().about.stats; track stat.label; let i = $index) {
           <div class="flex items-baseline gap-4 border-b border-white/5 pb-8 last:border-0 last:pb-0">
-            <span class="font-bricolage text-5xl font-extrabold text-primary">{{ stat.valor }}</span>
+            <span class="font-bricolage text-5xl font-extrabold text-primary">{{ animatedValues()[i] }}</span>
             <span class="font-manrope text-sm text-on-surface-variant uppercase tracking-widest">{{ stat.label }}</span>
           </div>
         }

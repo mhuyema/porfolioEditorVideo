@@ -1,8 +1,9 @@
-import { Component, AfterViewInit, OnDestroy, ViewChildren, QueryList, ElementRef, NgZone } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ViewChildren, QueryList, ElementRef, NgZone, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Video } from '../../models/video';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-works',
@@ -14,6 +15,7 @@ import { FadeInDirective } from '../../directives/fade-in.directive';
 export class Works implements AfterViewInit, OnDestroy {
   @ViewChildren('card') cardRefs!: QueryList<ElementRef<HTMLElement>>;
 
+  lang = inject(LanguageService);
   videoActivoKey: string | null = null;
   selectedVideo: Video | null = null;
   private rafId!: number;
