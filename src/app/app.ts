@@ -5,12 +5,12 @@ import { Hero } from './components/hero/hero';
 import { Navbar } from './components/navbar/navbar';
 import { Showreel } from './components/showreel/showreel';
 import { Works } from './components/works/works';
-
-
+import { Motion } from './components/motion/motion';
+import { About } from './components/about/about';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,Footer,Hero,Navbar,Showreel,Works],
+  imports: [RouterOutlet, Footer, Hero, Navbar, Showreel, Works, Motion, About],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
+import { FadeInDirective } from '../../directives/fade-in.directive';
 
 @Component({
   selector: 'app-showreel',
   standalone: true,
-  imports: [],
+  imports: [FadeInDirective],
   templateUrl: './showreel.html',
   styleUrl: './showreel.css',
 })
 export class Showreel {
+  mostrandoVideo = false;
 
-  // Función idéntica a tu vista de Works para el mouseleave
-  pausarYReiniciar(videoElement: HTMLVideoElement) {
-    videoElement.pause();
-    videoElement.currentTime = 0;
+  reproducir() {
+    this.mostrandoVideo = true;
   }
 }

@@ -1,0 +1,104 @@
+<section fadeIn class="py-24 px-margin-mobile md:px-margin-desktop bg-background" id="motion">
+  <div class="max-w-container-max mx-auto">
+
+    <div class="flex items-center gap-4 mb-4">
+      <span class="text-xs font-semibold text-primary tracking-widest uppercase font-manrope">Motion</span>
+      <div class="h-px flex-1 bg-white/10"></div>
+    </div>
+
+    <div class="mb-10">
+      <h2 class="font-bricolage text-4xl md:text-6xl font-extrabold mb-4 text-on-surface tracking-tight">
+        MOTION DESIGN
+      </h2>
+      <p class="font-manrope text-lg text-on-surface-variant max-w-xl">
+        Brand animations, logo reveals, and motion graphics built to last.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory">
+      <div class="flex gap-4 w-max">
+
+        @for (item of misMotions; track item.titulo; let i = $index) {
+
+          <div class="group relative overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer shrink-0 snap-start transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.7)]"
+               [class]="esHorizontal(item) ? 'w-[380px] aspect-video' : 'w-[180px] aspect-[9/16]'"
+               (mouseenter)="videoActivoIndex = i"
+               (mouseleave)="videoActivoIndex = null"
+               (click)="seleccionarItem(item)">
+
+            @if (videoActivoIndex === i) {
+              <iframe [src]="obtenerEmbedYT(item.linkVideo)"
+                      frameborder="0"
+                      allow="autoplay; encrypted-media"
+                      class="absolute inset-0 w-full h-full pointer-events-none">
+              </iframe>
+            } @else {
+              <img [src]="obtenerThumbnailYT(item.linkVideo)"
+                   [alt]="item.titulo"
+                   loading="lazy"
+                   class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
+            }
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
+
+            <div class="absolute bottom-0 left-0 right-0 z-20 p-3 pointer-events-none">
+              <span [className]="'text-[9px] font-manrope font-bold mb-0.5 block tracking-widest uppercase opacity-70 ' + item.colorBadge">
+                {{ item.categoria }}
+              </span>
+              <h4 class="font-bricolage text-sm font-bold text-white tracking-tight leading-tight">
+                {{ item.titulo }}
+              </h4>
+            </div>
+
+            <div class="absolute top-2.5 right-2.5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="text-white/60 text-xs">↗</span>
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  @if (selectedItem) {
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-6"
+         (click)="cerrarModal()">
+
+      <div class="absolute inset-0 bg-black/85 backdrop-blur-lg"></div>
+
+      <div class="relative z-10 w-full rounded-3xl overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)] animate-modal-in"
+           [class]="esHorizontal(selectedItem) ? 'max-w-3xl aspect-video' : 'max-w-[340px] aspect-[9/16]'"
+           (click)="$event.stopPropagation()">
+
+        <iframe [src]="obtenerEmbedModalYT(selectedItem.linkVideo)"
+                frameborder="0"
+                allow="autoplay; encrypted-media; fullscreen"
+                allowfullscreen
+                class="absolute inset-0 w-full h-full">
+        </iframe>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
+
+        <button class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all duration-200 text-sm"
+                (click)="cerrarModal()">✕</button>
+
+        <div class="absolute bottom-0 left-0 right-0 z-20 p-6">
+          <span [className]="'text-[10px] font-manrope font-bold mb-1 block tracking-widest uppercase opacity-80 ' + selectedItem.colorBadge">
+            {{ selectedItem.categoria }}
+          </span>
+          <h4 class="font-bricolage text-xl font-bold text-white tracking-tight mb-4">
+            {{ selectedItem.titulo }}
+          </h4>
+          <a [href]="selectedItem.linkVideo" target="_blank"
+             class="inline-block px-6 py-2.5 rounded-xl bg-primary text-black text-xs font-manrope font-bold tracking-wider hover:opacity-90 transition-opacity">
+            Ver en YouTube ↗
+          </a>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</section>
