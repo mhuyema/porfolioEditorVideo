@@ -62,6 +62,15 @@ export class Motion implements OnInit {
       linkVideo: 'https://youtu.be/S5TiLLVscPo',
       claseBento: 'col-span-2',
       linkExterno: ''
+    },
+    {
+      titulo: 'Education Motion',
+      categoria: 'Motion Grapchis Ads · After Effects',
+      colorBadge: 'text-primary',
+      imagenPortada: '',
+      linkVideo: 'https://youtube.com/shorts/XL88EQmrBMI',
+      claseBento: 'col-span-2',
+      linkExterno: ''
     }
   ];
 
