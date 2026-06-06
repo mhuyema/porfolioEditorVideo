@@ -1,23 +1,25 @@
 <section class="relative min-h-screen flex flex-col items-center justify-center pt-32 px-margin-mobile md:px-margin-desktop overflow-hidden">
 
   <div class="absolute inset-0 -z-10 overflow-hidden">
-    <div class="absolute inset-0 -rotate-6 scale-125 flex flex-col gap-3 blur-[3px] opacity-60">
-      <div class="flex gap-3 shrink-0">
-        @for (t of row1; track $index) {
-          <img [src]="t" alt="" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
-        }
+    @if (isDesktop) {
+      <div class="absolute inset-0 -rotate-6 scale-125 flex flex-col gap-3 blur-[3px] opacity-60">
+        <div class="flex gap-3 shrink-0">
+          @for (t of row1; track $index) {
+            <img [src]="t" alt="" decoding="async" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
+          }
+        </div>
+        <div class="flex gap-3 shrink-0">
+          @for (t of row2; track $index) {
+            <img [src]="t" alt="" decoding="async" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
+          }
+        </div>
+        <div class="flex gap-3 shrink-0">
+          @for (t of row3; track $index) {
+            <img [src]="t" alt="" decoding="async" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
+          }
+        </div>
       </div>
-      <div class="flex gap-3 shrink-0">
-        @for (t of row2; track $index) {
-          <img [src]="t" alt="" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
-        }
-      </div>
-      <div class="flex gap-3 shrink-0">
-        @for (t of row3; track $index) {
-          <img [src]="t" alt="" class="w-[110px] aspect-[9/16] object-cover rounded-lg shrink-0">
-        }
-      </div>
-    </div>
+    }
     <div class="absolute inset-0 bg-background/75"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60"></div>

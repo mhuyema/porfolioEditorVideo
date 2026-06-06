@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Video } from '../../models/video';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -12,14 +12,19 @@ import { LanguageService } from '../../services/language.service';
   templateUrl: './motion.html',
   styleUrls: ['./motion.css']
 })
-export class Motion {
+export class Motion implements OnInit {
   lang = inject(LanguageService);
   videoActivoIndex: number | null = null;
   selectedItem: Video | null = null;
-  private embedCache = new Map<string, SafeResourceUrl>();
-  private embedModalCache = new Map<string, SafeResourceUrl>();
 
   constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit() {
+    this.misMotions.forEach(v => {
+      const img = new Image();
+      img.src = this.obtenerThumbnailYT(v.linkVideo);
+    });
+  }
 
   misMotions: Array<Video> = [
     {
@@ -67,6 +72,15 @@ export class Motion {
       claseBento: 'col-span-2',
       linkExterno: ''
     }
+    {
+      titulo: 'Publicity Motion',
+      categoria: 'Motion Grapchis Ads · After Effects',
+      colorBadge: 'text-primary',
+      imagenPortada: '',
+      linkVideo: 'https://youtu.be/Hh8Bz5BmQ0s',
+      claseBento: 'col-span-2',
+      linkExterno: ''
+    }
   ];
 
   esHorizontal(item: Video): boolean {
@@ -79,25 +93,17 @@ export class Motion {
   }
 
   obtenerEmbedYT(url: string): SafeResourceUrl {
-    if (this.embedCache.has(url)) return this.embedCache.get(url)!;
     const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([^&\n?#]+)/);
     const id = match ? match[1] : '';
-    const safe = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1`
-    );
-    this.embedCache.set(url, safe);
-    return safe;
+    const embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 
   obtenerEmbedModalYT(url: string): SafeResourceUrl {
-    if (this.embedModalCache.has(url)) return this.embedModalCache.get(url)!;
     const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([^&\n?#]+)/);
     const id = match ? match[1] : '';
-    const safe = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${id}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1`
-    );
-    this.embedModalCache.set(url, safe);
-    return safe;
+    const embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 
   seleccionarItem(item: Video) {
@@ -113,9 +119,8 @@ export class Motion {
   }
 
   imgLoaded(e: Event) {
-    const img = e.target as HTMLImageElement;
-    img.style.opacity = '1';
-    img.parentElement?.classList.remove('skeleton-shimmer');
+    (e.target as HTMLImageEle
+      ment).style.opacity = '1';
   }
 
   iframeLoaded(e: Event) {

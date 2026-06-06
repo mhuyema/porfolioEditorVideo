@@ -9,10 +9,12 @@
   </div>
 
   <!-- Perspective wrapper -->
-  <div class="overflow-hidden" style="perspective: 600px; perspective-origin: 50% 50%;">
+  <div class="overflow-hidden"
+       [style.perspective]="isDesktop ? '600px' : null"
+       [style.perspectiveOrigin]="isDesktop ? '50% 50%' : null">
     <div class="flex gap-6 animate-marquee"
          [style.animationPlayState]="selectedVideo ? 'paused' : 'running'"
-         style="transform-style: preserve-3d;">
+         [style.transformStyle]="isDesktop ? 'preserve-3d' : null">
 
       <!-- Set A -->
       @for (video of misVideos; track video.titulo; let i = $index) {
@@ -24,6 +26,7 @@
 
           <!-- Thumbnail siempre visible como fondo -->
           <img [src]="obtenerThumbnailYT(video.linkVideo)" [alt]="video.titulo"
+               decoding="async"
                style="opacity:0;transition:opacity 0.45s ease"
                (load)="imgLoaded($event)"
                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
@@ -63,6 +66,7 @@
 
           <!-- Thumbnail siempre visible como fondo -->
           <img [src]="obtenerThumbnailYT(video.linkVideo)" [alt]="video.titulo"
+               decoding="async"
                style="opacity:0;transition:opacity 0.45s ease"
                (load)="imgLoaded($event)"
                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">

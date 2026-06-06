@@ -11,6 +11,7 @@ import { LanguageService } from '../../services/language.service';
 })
 export class Hero {
   lang = inject(LanguageService);
+  isDesktop = window.innerWidth >= 768;
 
   private thumbnails = [
     'https://img.youtube.com/vi/8VcKVLTbako/hqdefault.jpg',

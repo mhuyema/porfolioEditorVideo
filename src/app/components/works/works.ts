@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChildren, QueryList, ElementRef, NgZone, inject } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ViewChildren, QueryList, ElementRef, NgZone, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Video } from '../../models/video';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -12,12 +12,15 @@ import { LanguageService } from '../../services/language.service';
   templateUrl: './works.html',
   styleUrls: ['./works.css']
 })
-export class Works implements OnInit, AfterViewInit, OnDestroy {
+export class Works implements AfterViewInit, OnDestroy {
   @ViewChildren('card') cardRefs!: QueryList<ElementRef<HTMLElement>>;
 
   lang = inject(LanguageService);
   videoActivoKey: string | null = null;
   selectedVideo: Video | null = null;
+  isDesktop = window.innerWidth >= 768;
+  private embedCache = new Map<string, SafeResourceUrl>();
+  private embedModalCache = new Map<string, SafeResourceUrl>();
   private rafId!: number;
 
   constructor(private sanitizer: DomSanitizer, private ngZone: NgZone) {}
@@ -100,24 +103,6 @@ export class Works implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  ngOnInit() {
-    this.misVideos.forEach(v => {
-      const img = new Image();
-      img.src = this.obtenerThumbnailYT(v.linkVideo);
-    });
-    this.warmUpYouTube();
-  }
-
-  private warmUpYouTube() {
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/?enablejsapi=1';
-    iframe.style.cssText = 'position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;top:-9999px';
-    iframe.setAttribute('tabindex', '-1');
-    iframe.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(iframe);
-    iframe.addEventListener('load', () => setTimeout(() => iframe.remove(), 4000));
-  }
-
   ngAfterViewInit() {
     if (window.innerWidth >= 768) {
       this.ngZone.runOutsideAngular(() => this.startCylinderEffect());
@@ -170,17 +155,25 @@ export class Works implements OnInit, AfterViewInit, OnDestroy {
   }
 
   obtenerEmbedYT(url: string): SafeResourceUrl {
+    if (this.embedCache.has(url)) return this.embedCache.get(url)!;
     const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([^&\n?#]+)/);
     const id = match ? match[1] : '';
-    const embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+    const safe = this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1`
+    );
+    this.embedCache.set(url, safe);
+    return safe;
   }
 
   obtenerEmbedModalYT(url: string): SafeResourceUrl {
+    if (this.embedModalCache.has(url)) return this.embedModalCache.get(url)!;
     const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([^&\n?#]+)/);
     const id = match ? match[1] : '';
-    const embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+    const safe = this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://www.youtube.com/embed/${id}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1`
+    );
+    this.embedModalCache.set(url, safe);
+    return safe;
   }
 
   seleccionarVideo(video: Video) {
@@ -196,7 +189,9 @@ export class Works implements OnInit, AfterViewInit, OnDestroy {
   }
 
   imgLoaded(e: Event) {
-    (e.target as HTMLImageElement).style.opacity = '1';
+    const img = e.target as HTMLImageElement;
+    img.style.opacity = '1';
+    img.parentElement?.classList.remove('skeleton-shimmer');
   }
 
   iframeLoaded(e: Event) {
