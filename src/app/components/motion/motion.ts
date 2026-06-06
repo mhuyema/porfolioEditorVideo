@@ -65,16 +65,16 @@ export class Motion implements OnInit {
     },
     {
       titulo: 'Education Motion',
-      categoria: 'Motion Grapchis Ads · After Effects',
+      categoria: 'Motion Graphics Ads · After Effects',
       colorBadge: 'text-primary',
       imagenPortada: '',
       linkVideo: 'https://youtube.com/shorts/XL88EQmrBMI',
       claseBento: 'col-span-2',
       linkExterno: ''
-    }
+    },
     {
       titulo: 'Publicity Motion',
-      categoria: 'Motion Grapchis Ads · After Effects',
+      categoria: 'Motion Graphics Ads · After Effects',
       colorBadge: 'text-primary',
       imagenPortada: '',
       linkVideo: 'https://youtu.be/Hh8Bz5BmQ0s',
@@ -119,8 +119,7 @@ export class Motion implements OnInit {
   }
 
   imgLoaded(e: Event) {
-    (e.target as HTMLImageEle
-      ment).style.opacity = '1';
+    (e.target as HTMLImageElement).style.opacity = '1';
   }
 
   iframeLoaded(e: Event) {
