@@ -28,8 +28,30 @@
 
     <a href="https://wa.me/5491138915444?text=Hola!%20Vi%20tu%20portfolio%20y%20me%20interesa%20tu%20trabajo%20como%20editor"
        target="_blank"
-       class="bg-primary text-black px-6 py-2 rounded-full text-xs font-semibold hover:scale-105 active:scale-95 transition-transform inline-flex items-center justify-center">
+       class="hidden sm:inline-flex bg-primary text-black px-6 py-2 rounded-full text-xs font-semibold hover:scale-105 active:scale-95 transition-transform items-center justify-center">
       {{ lang.t().navbar.cta }}
     </a>
+
+    <!-- Botón hamburguesa (solo mobile) -->
+    <button (click)="toggleMenu()"
+            class="md:hidden flex items-center justify-center w-9 h-9 rounded-full bg-white/10 border border-white/15 text-on-surface hover:border-primary/40 transition-colors"
+            [attr.aria-expanded]="menuOpen()"
+            aria-label="Menú">
+      <span class="material-symbols-outlined text-xl">{{ menuOpen() ? 'close' : 'menu' }}</span>
+    </button>
   </div>
+
+  <!-- Menú desplegable mobile -->
+  @if (menuOpen()) {
+    <div class="md:hidden absolute top-full left-0 right-0 mt-3 mx-auto w-full rounded-3xl bg-surface/90 backdrop-blur-xl border-[0.5px] border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] p-4 flex flex-col gap-1 animate-modal-in">
+      <a (click)="closeMenu()" class="text-on-surface font-medium text-sm py-2.5 px-3 rounded-xl hover:bg-white/5 hover:text-primary transition-colors" href="#work">{{ lang.t().navbar.work }}</a>
+      <a (click)="closeMenu()" class="text-on-surface font-medium text-sm py-2.5 px-3 rounded-xl hover:bg-white/5 hover:text-primary transition-colors" href="#motion">{{ lang.t().navbar.motion }}</a>
+      <a (click)="closeMenu()" class="text-on-surface font-medium text-sm py-2.5 px-3 rounded-xl hover:bg-white/5 hover:text-primary transition-colors" href="#about">{{ lang.t().navbar.about }}</a>
+      <a (click)="closeMenu()" href="https://wa.me/5491138915444?text=Hola!%20Vi%20tu%20portfolio%20y%20me%20interesa%20tu%20trabajo%20como%20editor"
+         target="_blank"
+         class="mt-2 bg-primary text-black px-4 py-2.5 rounded-xl text-sm font-semibold text-center hover:opacity-90 transition-opacity">
+        {{ lang.t().navbar.cta }}
+      </a>
+    </div>
+  }
 </nav>

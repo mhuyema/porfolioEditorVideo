@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Footer } from './components/footer/footer';
 import { Hero } from './components/hero/hero';
 import { Navbar } from './components/navbar/navbar';
@@ -14,7 +13,7 @@ import { Services } from './components/services/services';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, Hero, Navbar, Showreel, Works, Motion, About, Cursor, Loader, Services],
+  imports: [Footer, Hero, Navbar, Showreel, Works, Motion, About, Cursor, Loader, Services],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
