@@ -80,6 +80,15 @@ export class Motion implements OnInit {
       linkVideo: 'https://youtu.be/Hh8Bz5BmQ0s',
       claseBento: 'col-span-2',
       linkExterno: ''
+    },
+    {
+      titulo: 'Publicity Ads',
+      categoria: 'Motion Graphics Ads · After Effects',
+      colorBadge: 'text-primary',
+      imagenPortada: '',
+      linkVideo: 'https://youtube.com/shorts/eWcYkQgDo-Y',
+      claseBento: 'col-span-2',
+      linkExterno: ''
     }
   ];
 
