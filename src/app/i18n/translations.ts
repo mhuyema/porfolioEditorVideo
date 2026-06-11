@@ -27,8 +27,7 @@ export const translations = {
       bio1: 'Video editor & motion designer focused on short-form content that captures attention in the first second. I combine precise cutting rhythm with motion graphics to build stories that stick.',
       stats: [
         { valor: '3+', label: 'Years editing' },
-        { valor: '50+', label: 'Projects delivered' },
-        { valor: '1M+', label: 'Views generated' }
+        { valor: '50+', label: 'Projects delivered' }
       ]
     },
     services: {
@@ -90,8 +89,7 @@ export const translations = {
       bio1: 'Editor de video y motion designer especializado en contenido short-form que captura la atención en el primer segundo. Combino ritmo de corte preciso con motion graphics para construir historias que se quedan.',
       stats: [
         { valor: '3+', label: 'Años editando' },
-        { valor: '50+', label: 'Proyectos entregados' },
-        { valor: '1M+', label: 'Vistas generadas' }
+        { valor: '50+', label: 'Proyectos entregados' }
       ]
     },
     services: {

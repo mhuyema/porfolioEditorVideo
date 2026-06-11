@@ -21,8 +21,7 @@ export class About implements AfterViewInit, OnDestroy {
 
   private targets = [
     { end: 3,  suffix: '+' },
-    { end: 50, suffix: '+' },
-    { end: 1,  suffix: 'M+' }
+    { end: 50, suffix: '+' }
   ];
 
   animatedValues = signal(this.targets.map(t => '0' + t.suffix));
