@@ -5,7 +5,7 @@ export const translations = {
     },
     hero: {
       role: 'Video Editor & Motion Designer',
-      description: 'Precision short-form editing for the next generation of visual storytellers. Ultra-modern pacing meets high-fidelity production.',
+      description: 'Short-form video editing and motion graphics, with rhythm and narrative.',
       cta1: 'View works', cta2: 'Contact'
     },
     showreel: {
@@ -25,7 +25,6 @@ export const translations = {
     about: {
       label: 'About', greeting: "Hi, I'm",
       bio1: 'Video editor & motion designer focused on short-form content that captures attention in the first second. I combine precise cutting rhythm with motion graphics to build stories that stick.',
-      bio2: 'Based in Argentina — working with brands and creators worldwide.',
       stats: [
         { valor: '3+', label: 'Years editing' },
         { valor: '50+', label: 'Projects delivered' },
@@ -69,7 +68,7 @@ export const translations = {
     },
     hero: {
       role: 'Editor de Video & Motion Designer',
-      description: 'Edición short-form de precisión para la próxima generación de creadores visuales. Ritmo ultra-moderno y producción de alta fidelidad.',
+      description: 'Edición de video short-form y motion graphics, con ritmo y narrativa.',
       cta1: 'Ver trabajos', cta2: 'Contactar'
     },
     showreel: {
@@ -89,7 +88,6 @@ export const translations = {
     about: {
       label: 'Sobre mí', greeting: 'Hola, soy',
       bio1: 'Editor de video y motion designer especializado en contenido short-form que captura la atención en el primer segundo. Combino ritmo de corte preciso con motion graphics para construir historias que se quedan.',
-      bio2: 'Basado en Argentina — trabajando con marcas y creadores de todo el mundo.',
       stats: [
         { valor: '3+', label: 'Años editando' },
         { valor: '50+', label: 'Proyectos entregados' },
