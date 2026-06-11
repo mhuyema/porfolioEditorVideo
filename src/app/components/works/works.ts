@@ -36,26 +36,6 @@ export class Works implements AfterViewInit, OnDestroy {
       linkExterno: ''
     },
     {
-      titulo: 'Travel Life Style',
-      categoria: 'Viral / Social',
-      colorBadge: 'text-secondary',
-      imagenPortada: 'https://youtube.com/shorts/UKoglYLAf9Y',
-      linkVideo: 'https://youtube.com/shorts/UKoglYLAf9Y',
-      claseBento: '',
-      linkExterno: 'https://www.tiktok.com/@assist365ok/video/7637260289750158612?lang=es-419',
-      vistas: '+270K views'
-    },
-    {
-      titulo: 'Brasil en Marzo y Abril',
-      categoria: 'Viral / Social',
-      colorBadge: 'text-primary',
-      imagenPortada: 'https://youtube.com/shorts/sWgxyE-_Pdw',
-      linkVideo: 'https://youtube.com/shorts/sWgxyE-_Pdw',
-      claseBento: '',
-      linkExterno: 'https://www.tiktok.com/@assist365ok/video/7612432386441252116?lang=es-419',
-      vistas: '+20K views'
-    },
-    {
       titulo: 'Tutorial',
       categoria: 'House tips',
       colorBadge: 'text-primary',
